@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   game_objects.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
+/*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 18:19:57 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/13 12:25:38 by fgata-va         ###   ########.fr       */
+/*   Created: 2021/03/13 12:23:49 by fgata-va          #+#    #+#             */
+/*   Updated: 2021/03/13 12:48:05 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "game_objects.h"
+#ifndef GAME_OBJECTS_H
+# define GAME_OBJECTS_H
+
+typedef struct s_element
+{
+	struct s_element	*next;
+	int					*content;
+}				t_element;
+
+typedef struct s_stack
+{
+	t_element	*top;
+	t_element	*end;
+}				t_stack;
 
 #endif
