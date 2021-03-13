@@ -6,17 +6,18 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:23:49 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/13 12:48:05 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/13 13:13:08 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_OBJECTS_H
 # define GAME_OBJECTS_H
+# include <stdlib.h>
 
 typedef struct s_element
 {
 	struct s_element	*next;
-	int					*content;
+	int					content;
 }				t_element;
 
 typedef struct s_stack
