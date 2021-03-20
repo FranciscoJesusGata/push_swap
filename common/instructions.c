@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
+/*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:06:44 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/16 16:22:33 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:49:48 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_element	*pop_element(t_stack *stack)
 	if (!stack || !stack->top)
 		return (NULL);
 	elem = stack->top;
-	elem->next = NULL;
 	stack->top = elem->next;
+	elem->next = NULL;
 	return (elem);
 }
 
