@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+         #
+#    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/03/20 09:34:57 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/03/21 13:23:08 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ CC = gcc
 CFLAGS := -Wall -Werror -Wextra -I. -g
 
 COMMON = common/basic_functions.c common/check_args.c common/instructions.c\
-		 common/read_input.c common/verbose_bonus.c
+		 common/verbose_bonus.c
 
-CHECKER_SRC = checker.c
+CHECKER_SRC = checker.c read_input.c
 
 CHECKER = checker
 
