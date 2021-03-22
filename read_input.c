@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/21 13:25:20 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:43:01 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,37 @@ void	add_char(char **dst, char c)
 	}
 }
 
-/*void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
+void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
 {
 	if (*instruction == 's')
-	else if (*instruction == 'p')
-	else if (*instruction == 'r')
-	else
 	{
-		free_stack(stack_a);
-		free_stack(stack_b);
-		exit(1);
+		if (instruction[1] == 'a' || instruction[1] == 's')
+			swap(stack_a);
+		if (instruction[1] == 'b' || instruction[1] == 's')
+			swap(stack_b);
 	}
-	
-}*/
+	else if (*instruction == 'p')
+	{
+		if (instruction[1] == 'a')
+			push_element(pop_element(stack_b), stack_a);
+		else if (instruction[1] == 'b')
+			push_element(pop_element(stack_a), stack_b);
+	}
+	else if (*instruction == 'r')
+	{
+		if (instruction[1] == 'a')
+			rotate(stack_a);
+		else if (instruction[1] == 'b')
+			rotate(stack_b);
+		else if (instruction[1] == 'r')
+		{
+			if(instruction[2] == 'a')
+				reverse(stack_a);
+			else if (instruction[2] == 'b')
+				reverse(stack_b);
+		}
+	}
+}
 
 void	read_input(t_stack *stack_a, t_stack *stack_b)
 {
@@ -62,14 +80,14 @@ void	read_input(t_stack *stack_a, t_stack *stack_b)
 		{
 			ft_putstr_fd(instruction, 1);
 			write(1, "\n", 1);
-			reverse(stack_a);
-			print_stack(stack_a, stack_b);
-			write(1, "\n", 1);
 			if (instruction)
 			{
+				check_input(instruction, stack_a, stack_b);
 				free(instruction);
 				instruction = NULL;
 			}
+			print_stack(stack_a, stack_b);
+			write(1, "\n", 1);
 			buffer = 0;
 		}
 		add_char(&instruction, buffer);
