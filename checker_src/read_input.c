@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/22 11:43:01 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:17:51 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	read_input(t_stack *stack_a, t_stack *stack_b)
+void	read_input(t_checker *checker)
 {
 	char	buffer;
 	char	*instruction;
 	int		r;
 
 	instruction = NULL;
-	r = read(0, &buffer, 1);
+	r = get_next_line(0, &instruction);
 	while (r > 0)
 	{
 		if (buffer == '\n' || buffer == 0)
@@ -82,16 +82,16 @@ void	read_input(t_stack *stack_a, t_stack *stack_b)
 			write(1, "\n", 1);
 			if (instruction)
 			{
-				check_input(instruction, stack_a, stack_b);
+				check_input(instruction, &checker->stack_a, &checker->stack_b);
 				free(instruction);
 				instruction = NULL;
 			}
-			print_stack(stack_a, stack_b);
+			print_stack(&checker->stack_a, &checker->stack_b);
 			write(1, "\n", 1);
 			buffer = 0;
 		}
 		add_char(&instruction, buffer);
-		r = read(0, &buffer, 1);
+		r = get_next_line(0, &instruction);
 	}
 	write(1, "\n", 1);
 }

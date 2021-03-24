@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/03/21 13:23:08 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/03/24 14:12:27 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ CC = gcc
 CFLAGS := -Wall -Werror -Wextra -I. -g
 
 COMMON = common/basic_functions.c common/check_args.c common/instructions.c\
-		 common/verbose_bonus.c
+		 common/get-next-line.c common/verbose_bonus.c
 
-CHECKER_SRC = checker.c read_input.c
+CHECKER_SRC = checker_src/checker.c checker_src/read_input.c
 
 CHECKER = checker
 
@@ -33,8 +33,7 @@ OBJS = $(COMMON:.c=.o)
 
 all: $(CHECKER)
 
-$(CHECKER): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) -c $(CHECKER_SRC)
+$(CHECKER): $(LIBFT) $(OBJS) $(CHECKER_OBJS)
 	$(CC) $(CFLAGS) $(CHECKER_OBJS) $(OBJS) -o $(CHECKER) $(INCLUDE_LIBFT)
 
 $(LIBFT):
@@ -45,7 +44,8 @@ clean:
 	$(MAKE) -C Libft clean
 
 fclean: clean
-	rm -rf $(CHECKER) $(CHECKER).dSYM
+	rm $(CHECKER)
+	rm -rf $(CHECKER).dSYM
 	$(MAKE) -C Libft fclean
 
 re: fclean all
