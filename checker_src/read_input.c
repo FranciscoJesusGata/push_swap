@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/25 18:48:08 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/26 09:54:15 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
 			rotate(stack_b);
 		else if (instruction[1] == 'r')
 		{
-			if(instruction[2] == 'a')
+			if (instruction[2] == 0)
+			{
+				reverse(stack_a);
+				reverse(stack_b);
+			}
+			else if(instruction[2] == 'a')
 				reverse(stack_a);
 			else if (instruction[2] == 'b')
 				reverse(stack_b);
