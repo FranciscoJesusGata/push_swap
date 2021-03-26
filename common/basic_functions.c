@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:33:49 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/20 13:20:23 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:46:32 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,16 @@ t_stack	*new_stack(void)
 	return (stack);
 }
 
-int	init_stacks(int argc, char **argv,\
-			t_stack *stack_a, t_stack *stack_b)
+int	init_stacks(int argc, char **argv, t_data *data)
 {
-	stack_a->top = NULL;
-	stack_b->top = NULL;
-	stack_a->end = NULL;
-	stack_b->end = NULL;
-	if (!(fill_stack(argc, argv, stack_a)))
+	data->stack_a.top = NULL;
+	data->stack_b.top = NULL;
+	data->stack_a.end = NULL;
+	data->stack_b.end = NULL;
+	if (!(fill_stack(argc, argv, data)))
 	{
-		free_stack(stack_a);
-		free_stack(stack_b);
+		free_stack(&data->stack_a);
+		free_stack(&data->stack_b);
 		return (0);
 	}
 	return (1);

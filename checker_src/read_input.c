@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/24 14:17:51 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:48:08 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	read_input(t_checker *checker)
+void	read_input(t_data *checker)
 {
 	char	buffer;
 	char	*instruction;

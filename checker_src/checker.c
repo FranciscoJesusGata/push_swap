@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:16:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/24 12:40:40 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:25:53 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,26 @@ int	check_stack_order(t_stack *a)
 			return (0);
 		current = current->next;
 	}
-	write(1, "OK!\n", 4);
 	return (1);
+}
+
+void	init_struct(t_data *checker)
+{
+	checker->verbose = 0;
+	checker->color = 0;
+	checker->fd = 0;
+	checker->last_movement = 0;
 }
 
 int	main(int argc, char **argv)
 {
 	int	i;
-	t_checker	checker;
+	t_data	checker;
 
 	i = 1;
-	if (argc == 1 || !(init_stacks(argc, argv, &checker.stack_a, &checker.stack_b)))
+	init_struct(&checker);
+	if (argc == 1 ||
+	!(init_stacks(argc, argv, &checker)))
 		return (1);
 	read_input(&checker);
 	return (0);
