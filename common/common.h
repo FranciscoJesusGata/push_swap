@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:31:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/25 18:43:48 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/29 12:49:11 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	fill_stack(int argc, char **argv, t_data *data);
 int	init_stacks(int argc, char **argv, t_data *data);
 void	free_stack(t_stack *stack);
 void	print_stack(t_stack *stack_a, t_stack *stack_b);
+int	check_stack_order(t_stack *a);
 int	get_next_line(int fd, char **line);
 void	ft_error(char *msg);
 int		ft_isnumer(const char *str);

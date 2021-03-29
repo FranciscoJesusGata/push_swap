@@ -6,11 +6,25 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:35:33 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/25 19:26:43 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/29 12:48:45 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+
+int	check_stack_order(t_stack *a)
+{
+	t_element *current;
+
+	current = a->top;
+	while (current)
+	{
+		if (current->next && current->next->content < current->content)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
 
 int	check_flags(char **argv, int *i, t_data *data)
 {

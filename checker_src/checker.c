@@ -6,26 +6,14 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:16:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/26 09:23:23 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/29 12:48:28 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include <stdio.h>
 
-int	check_stack_order(t_stack *a)
-{
-	t_element *current;
 
-	current = a->top;
-	while (current)
-	{
-		if (current->next && current->next->content < current->content)
-			return (0);
-		current = current->next;
-	}
-	return (1);
-}
 
 void	init_struct(t_data *checker)
 {
