@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/26 09:54:15 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:42:38 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
 
 void	read_input(t_data *checker)
 {
-	char	buffer;
 	char	*instruction;
 	int		r;
 
@@ -81,22 +80,25 @@ void	read_input(t_data *checker)
 	r = get_next_line(0, &instruction);
 	while (r > 0)
 	{
-		if (buffer == '\n' || buffer == 0)
+		if (instruction)
 		{
-			ft_putstr_fd(instruction, 1);
-			write(1, "\n", 1);
-			if (instruction)
-			{
-				check_input(instruction, &checker->stack_a, &checker->stack_b);
-				free(instruction);
-				instruction = NULL;
-			}
-			print_stack(&checker->stack_a, &checker->stack_b);
-			write(1, "\n", 1);
-			buffer = 0;
+			check_input(instruction, &checker->stack_a, &checker->stack_b);
+			free(instruction);
+			instruction = NULL;
 		}
-		add_char(&instruction, buffer);
+		if (check_stack_order(&checker->stack_a) && !checker->stack_b.top)
+		{
+			write(1, "OK!\n",4);
+			return ;
+		}
+		if (checker->verbose)
+			print_stack(&checker->stack_a, &checker->stack_b);
 		r = get_next_line(0, &instruction);
+	}
+	if (!(check_stack_order(&checker->stack_a)) || checker->stack_b.top)
+	{
+		write(1, "KO\n",3);
+		return ;
 	}
 	write(1, "\n", 1);
 }
