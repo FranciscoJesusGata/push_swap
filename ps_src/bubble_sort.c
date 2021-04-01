@@ -6,26 +6,11 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:49:01 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/31 17:36:40 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/01 12:36:37 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		ft_stack_len(t_stack *stack)
-{
-	t_element	*current;
-	int			len;
-
-	len = 0;
-	current = stack->top;
-	while (current)
-	{
-		len++;
-		current = current->next;
-	}
-	return (len);
-}
 
 void	bubble_sort(t_stack *stack)
 {

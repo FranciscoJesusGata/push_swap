@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/03/29 18:41:29 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/04/01 12:09:13 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CHECKER_SRC = checker_src/checker.c checker_src/read_input.c
 
 CHECKER = checker
 
-PS_SRC = ps_src/push_swap.c ps_src/bubble_sort.c
+PS_SRC = ps_src/push_swap.c ps_src/bubble_sort.c ps_src/insertion.c
 
 PUSH_SWAP = push_swap
 

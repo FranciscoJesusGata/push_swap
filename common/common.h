@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:31:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/29 12:49:11 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/01 11:11:44 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	check_stack_order(t_stack *a);
 int	get_next_line(int fd, char **line);
 void	ft_error(char *msg);
 int		ft_isnumer(const char *str);
+int		ft_stack_len(t_stack *stack);
 int	ft_duplicated(t_stack *stack, int num);
 
 #endif
