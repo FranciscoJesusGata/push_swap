@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/01 12:41:38 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:00:48 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int	main(int argc, char **argv)
 {
 	t_data	push_swap;
 	int		elements;
+
 	init_push(&push_swap);
-	if (argc == 1 ||
-	!(init_stacks(argc, argv, &push_swap)))
+	if (argc == 1 \
+	|| !(init_stacks(argc, argv, &push_swap)))
 		return (1);
 	elements = ft_stack_len(&push_swap.stack_a);
 	if (elements <= 5)

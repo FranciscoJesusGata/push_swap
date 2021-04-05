@@ -6,18 +6,20 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/04/01 12:09:13 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/04/05 17:38:14 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS := -Wall -Werror -Wextra -I. -g
+CFLAGS := -Wall -Werror -Wextra -I. -g3
 
 COMMON = common/basic_functions.c common/check_args.c common/instructions.c\
-		 common/get-next-line.c common/utils_1.c common/verbose_bonus.c
+		 common/utils_1.c
 
-CHECKER_SRC = checker_src/checker.c checker_src/read_input.c
+BONUS_SRC = common/verbose_bonus.c common/check_flags_bonus.c
+
+CHECKER_SRC = checker_src/checker.c checker_src/read_input.c checker_src/get-next-line.c
 
 CHECKER = checker
 
@@ -35,15 +37,15 @@ PS_OBJS = $(PS_SRC:.c=.o)
 
 OBJS = $(COMMON:.c=.o)
 
+BONUS_OBJS = $(BONUS_SRC:.c=.o)
+
 all: $(CHECKER) $(PUSH_SWAP)
 
-bonus: $(CHECKER)
+$(CHECKER): $(LIBFT) $(OBJS) $(CHECKER_OBJS) $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(CHECKER_OBJS) $(BONUS_OBJS) $(OBJS) -o $(CHECKER) $(INCLUDE_LIBFT)
 
-$(CHECKER): $(LIBFT) $(OBJS) $(CHECKER_OBJS)
-	$(CC) $(CFLAGS) $(CHECKER_OBJS) $(OBJS) -o $(CHECKER) $(INCLUDE_LIBFT)
-
-$(PUSH_SWAP): $(LIBFT) $(OBJS) $(PS_OBJS)
-	$(CC) $(CFLAGS) $(PS_OBJS) $(OBJS) -o $(PUSH_SWAP) $(INCLUDE_LIBFT)
+$(PUSH_SWAP): $(LIBFT) $(OBJS) $(PS_OBJS) $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(PS_OBJS) $(OBJS) $(BONUS_OBJS) -o $(PUSH_SWAP) $(INCLUDE_LIBFT)
 
 $(LIBFT):
 	$(MAKE) -C Libft
@@ -62,8 +64,13 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette $(CHECKER_SRC) $(COMMON) $(PS_SRC) push_swap/push_swap.h \
-	checker/checker.h common/common.h
-	norminette Libft/
+	@echo "			Norminette COMMON and BONUS section:\n"
+	@norminette $(COMMON) $(BONUS_SRC) common/common.h common/common_bonus.h
+	@echo "			Norminette CHECKER section:\n"
+	@norminette $(CHECKER_SRC) checker_src/checker.h
+	@echo "			Norminette PUSH_SWAP section:\n"
+	@norminette $(PS_SRC) ps_src/push_swap.h
+	@echo "			Norminette LIBFT section:\n"
+	@norminette Libft/
 
 .PHONY: all clean fclean re

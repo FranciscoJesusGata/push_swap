@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/31 17:42:38 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:51:57 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	add_char(char **dst, char c)
 {
-	char *tmp;
-	int	len;
+	char	*tmp;
+	int		len;
 
 	if (!*dst)
 	{
@@ -31,6 +31,26 @@ void	add_char(char **dst, char c)
 		free(*dst);
 		*dst = tmp;
 		tmp = NULL;
+	}
+}
+
+void	rotations(char *instruction, t_stack *stack_a, t_stack *stack_b)
+{
+	if (instruction[1] == 'a')
+		rotate(stack_a);
+	else if (instruction[1] == 'b')
+		rotate(stack_b);
+	else if (instruction[1] == 'r')
+	{
+		if (instruction[2] == 0)
+		{
+			reverse(stack_a);
+			reverse(stack_b);
+		}
+		else if (instruction[2] == 'a')
+			reverse(stack_a);
+		else if (instruction[2] == 'b')
+			reverse(stack_b);
 	}
 }
 
@@ -51,24 +71,7 @@ void	check_input(char *instruction, t_stack *stack_a, t_stack *stack_b)
 			push_element(pop_element(stack_a), stack_b);
 	}
 	else if (*instruction == 'r')
-	{
-		if (instruction[1] == 'a')
-			rotate(stack_a);
-		else if (instruction[1] == 'b')
-			rotate(stack_b);
-		else if (instruction[1] == 'r')
-		{
-			if (instruction[2] == 0)
-			{
-				reverse(stack_a);
-				reverse(stack_b);
-			}
-			else if(instruction[2] == 'a')
-				reverse(stack_a);
-			else if (instruction[2] == 'b')
-				reverse(stack_b);
-		}
-	}
+		rotations(instruction, stack_a, stack_b);
 }
 
 void	read_input(t_data *checker)
@@ -77,8 +80,9 @@ void	read_input(t_data *checker)
 	int		r;
 
 	instruction = NULL;
-	r = get_next_line(0, &instruction);
-	while (r > 0)
+	r = get_next_line(checker->fd, &instruction);
+	while (r > 0 && !(check_stack_order(&checker->stack_a)
+			&& !checker->stack_b.top))
 	{
 		if (instruction)
 		{
@@ -86,19 +90,12 @@ void	read_input(t_data *checker)
 			free(instruction);
 			instruction = NULL;
 		}
-		if (check_stack_order(&checker->stack_a) && !checker->stack_b.top)
-		{
-			write(1, "OK!\n",4);
-			return ;
-		}
 		if (checker->verbose)
-			print_stack(&checker->stack_a, &checker->stack_b);
-		r = get_next_line(0, &instruction);
+			print_stack_bonus(&checker->stack_a, &checker->stack_b);
+		r = get_next_line(checker->fd, &instruction);
 	}
 	if (!(check_stack_order(&checker->stack_a)) || checker->stack_b.top)
-	{
-		write(1, "KO\n",3);
-		return ;
-	}
-	write(1, "\n", 1);
+		write(1, "KO\n", 3);
+	else
+		write(1, "OK!\n", 4);
 }

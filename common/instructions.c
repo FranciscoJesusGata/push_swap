@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:06:44 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/31 18:39:11 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:42:00 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_stack *stack)
 {
-	t_element *aux;
+	t_element	*aux;
 
 	if (!stack || !stack->top || !stack->top->next)
 		return ;
@@ -37,7 +37,7 @@ void	push_element(t_element *elem, t_stack *stack)
 
 t_element	*pop_element(t_stack *stack)
 {
-	t_element *elem;
+	t_element	*elem;
 
 	if (!stack || !stack->top)
 		return (NULL);
@@ -74,4 +74,3 @@ void	reverse(t_stack *stack)
 	stack->end = current;
 	current->next = NULL;
 }
-

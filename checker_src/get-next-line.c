@@ -6,13 +6,13 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:04:00 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/24 14:13:13 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/05 13:56:00 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "checker.h"
 
-char				*ft_clean_line(char *save, char **line, int r)
+char	*ft_clean_line(char *save, char **line, int r)
 {
 	unsigned int	i;
 	char			*tmp;
@@ -40,7 +40,7 @@ char				*ft_clean_line(char *save, char **line, int r)
 	return (save);
 }
 
-char				*ft_save(char *buffer, char *save)
+char	*ft_save(char *buffer, char *save)
 {
 	char			*tmp;
 
@@ -56,13 +56,14 @@ char				*ft_save(char *buffer, char *save)
 	return (save);
 }
 
-int					get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char		*save[4096];
 	char			buffer[4];
 	int				r;
 
-	while ((r = read(fd, buffer, 3)))
+	r = read(fd, buffer, 3);
+	while (r)
 	{
 		if (r == -1)
 			return (-1);
@@ -70,6 +71,7 @@ int					get_next_line(int fd, char **line)
 		save[fd] = ft_save(buffer, save[fd]);
 		if (ft_strchr(buffer, '\n'))
 			break ;
+		r = read(fd, buffer, 3);
 	}
 	if (r <= 0 && !save[fd])
 	{
