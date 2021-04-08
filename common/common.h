@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:31:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/05 16:59:18 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:18:14 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,10 @@ void		ft_error(char *msg);
 int			ft_isnumer(const char *str);
 int			ft_stack_len(t_stack *stack);
 int			ft_duplicated(t_stack *stack, int num);
+int			ft_isspace(char c);
+void		instruction(char *instruction, t_stack *stack_a,
+				t_stack *stack_b, int w);
+void		free_matrix(char **matrix);
+int			count_args(char *arg);
 
 #endif

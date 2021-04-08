@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 10:42:37 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/05 17:32:02 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:59:15 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,13 @@ void	insertion_sort(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (stack_b->top && stack_b->top->content < stack_a->top->content)
 		{
-			push_element(pop_element(stack_b), stack_a);
-			write(1, "pa\n", 3);
+			instruction("pa", stack_a, stack_b, 1);
 		}
 		else if (stack_a->top->content > stack_a->top->next->content \
 			&& stack_a->top->content != max)
 		{
-			push_element(pop_element(stack_a), stack_b);
-			write(1, "pb\n", 3);
+			instruction("pb", stack_a, stack_b, 1);
 		}
-		rotate(stack_a);
-		write(1, "ra\n", 3);
+		instruction("ra", stack_a, stack_b, 1);
 	}
 }

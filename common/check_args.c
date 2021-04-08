@@ -6,11 +6,10 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:35:33 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/05 16:40:59 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:04:37 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
 #include "common_bonus.h"
 
 int	check_stack_order(t_stack *a)
@@ -45,6 +44,35 @@ int	check_args(char *arg, t_stack *stack, long long *num)
 	return (1);
 }
 
+int	multi_args(char *arg, t_data *data)
+{
+	char		**args;
+	int			len;
+	long long	num;
+
+	len = 0;
+	args = ft_split(arg, ' ');
+	while (args[len])
+		len++;
+	len--;
+	while (len >= 0)
+	{
+		if ((check_args(args[len], &data->stack_a, &num)))
+		{
+			ft_printf("%s Pushed\n", args[len]);
+			push_element(new_element(num), &data->stack_a);
+		}
+		else
+		{
+			free_matrix(args);
+			return (0);
+		}
+		len--;
+	}
+	free_matrix(args);
+	return (1);
+}
+
 int	fill_stack(int argc, char **argv, t_data *data)
 {
 	int			i;
@@ -57,7 +85,12 @@ int	fill_stack(int argc, char **argv, t_data *data)
 		start++;
 	while (i >= start)
 	{
-		if ((check_args(argv[i], &data->stack_a, &num)))
+		if (count_args(argv[i]) > 1)
+		{
+			if (!(ft_strlen(argv[i])) || !(multi_args(argv[i], data)))
+				return (0);
+		}
+		else if ((check_args(argv[i], &data->stack_a, &num)))
 			push_element(new_element(num), &data->stack_a);
 		else
 			return (0);

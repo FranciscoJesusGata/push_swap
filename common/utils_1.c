@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:53:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/05 16:43:19 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/08 12:04:55 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,10 @@ int	ft_stack_len(t_stack *stack)
 		current = current->next;
 	}
 	return (len);
+}
+
+int	ft_isspace(char c)
+{
+	return ((c == ' ' || c == '\n' || c == '\t'
+			|| c == '\v' || c == '\f' || c == '\r'));
 }
