@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:33:49 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/03/25 18:46:32 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/16 09:30:51 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,32 @@ void	free_stack(t_stack *stack)
 	aux = NULL;
 	stack->top = NULL;
 	stack->end = NULL;
+}
+
+int	fill_stack(int argc, char **argv, t_data *data)
+{
+	int			i;
+	int			start;
+	long long	num;
+
+	start = 1;
+	i = argc - 1;
+	while (start < argc && check_flags_bonus(argv, &start, data))
+		start++;
+	while (i >= start)
+	{
+		if (count_args(argv[i]) > 1)
+		{
+			if (!(ft_strlen(argv[i])) || !(multi_args(argv[i], data)))
+				return (0);
+		}
+		else if ((check_args(argv[i], &data->stack_a, &num)))
+			push_element(new_element(num), &data->stack_a);
+		else
+			return (0);
+		i--;
+	}
+	if (!data->stack_a.top)
+		return (0);
+	return (1);
 }

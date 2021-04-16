@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:35:33 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/08 12:04:37 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/16 09:27:44 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int	multi_args(char *arg, t_data *data)
 	while (len >= 0)
 	{
 		if ((check_args(args[len], &data->stack_a, &num)))
-		{
-			ft_printf("%s Pushed\n", args[len]);
 			push_element(new_element(num), &data->stack_a);
-		}
 		else
 		{
 			free_matrix(args);
@@ -73,30 +70,3 @@ int	multi_args(char *arg, t_data *data)
 	return (1);
 }
 
-int	fill_stack(int argc, char **argv, t_data *data)
-{
-	int			i;
-	int			start;
-	long long	num;
-
-	start = 1;
-	i = argc - 1;
-	while (start < argc && check_flags_bonus(argv, &start, data))
-		start++;
-	while (i >= start)
-	{
-		if (count_args(argv[i]) > 1)
-		{
-			if (!(ft_strlen(argv[i])) || !(multi_args(argv[i], data)))
-				return (0);
-		}
-		else if ((check_args(argv[i], &data->stack_a, &num)))
-			push_element(new_element(num), &data->stack_a);
-		else
-			return (0);
-		i--;
-	}
-	if (!data->stack_a.top)
-		return (0);
-	return (1);
-}

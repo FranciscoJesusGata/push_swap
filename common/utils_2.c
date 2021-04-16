@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 10:44:54 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/08 12:06:57 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/08 13:14:05 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,19 @@ int	count_args(char *arg)
 			i++;
 	}
 	return (cnt);
+}
+
+int	ft_nbrlen(long int n, int base_len)
+{
+	int	i;
+
+	i = 0;
+	if (n < base_len)
+		return (1);
+	while(n > 0)
+	{
+		n /= base_len;
+		i++;
+	}
+	return (i);
 }
