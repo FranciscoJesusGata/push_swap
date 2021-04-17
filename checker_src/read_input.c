@@ -6,31 +6,29 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/07 16:09:11 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/16 12:48:31 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	add_char(char **dst, char c)
+void	check_input(char *input, t_data *checker)
 {
-	char	*tmp;
-	int		len;
+	size_t	len;
 
-	if (!*dst)
+	len = ft_strlen(input);
+	if (len < 2)
 	{
-		*dst = ft_calloc(2, 1);
-		**dst = c;
+		// Error
 	}
-	else
+	else if (!(ft_strncmp(input, "sa", 3)) || !(ft_strncmp(input, "sb", 3))
+			|| !(ft_strncmp(input, "ss", 3)) || !(ft_strncmp(input, "pa", 3))
+			|| !(ft_strncmp(input, "pb", 3)) || !(ft_strncmp(input, "ra", 3))
+			|| !(ft_strncmp(input, "rb", 3)) || !(ft_strncmp(input, "rr", 4)))
 	{
-		len = ft_strlen(*dst);
-		tmp = ft_calloc(len + 2, 1);
-		ft_memcpy(tmp, *dst, len);
-		tmp[len] = c;
-		free(*dst);
-		*dst = tmp;
-		tmp = NULL;
+		instruction(input, &checker->stack_a, &checker->stack_b, 0);
+		free(input);
+		input = NULL;
 	}
 }
 
