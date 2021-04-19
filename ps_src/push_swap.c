@@ -6,11 +6,20 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/07 15:59:46 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/19 10:08:38 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*void	sort_three(t_stack *stack_a)
+{
+	t_element *greatest;
+
+	greatest = find_greatest(stack_a);
+	while (!(check_stack_order(stack_a)))
+	{}
+}*/
 
 void	init_push(t_data *data)
 {
@@ -30,7 +39,9 @@ int	main(int argc, char **argv)
 	|| !(init_stacks(argc, argv, &push_swap)))
 		return (1);
 	elements = ft_stack_len(&push_swap.stack_a);
-	if (elements <= 5)
+	if (elements == 2 && !(check_stack_order(&push_swap.stack_a)))
+		instruction("sa", &push_swap.stack_a, &push_swap.stack_b, 1);
+	else if (elements <= 5)
 		insertion_sort(&push_swap.stack_a, &push_swap.stack_b);
 	else
 		bubble_sort(&push_swap.stack_a, &push_swap.stack_b);

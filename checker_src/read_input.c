@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/16 12:48:31 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/18 17:27:06 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 void	check_input(char *input, t_data *checker)
 {
-	size_t	len;
+	size_t	l;
 
-	len = ft_strlen(input);
-	if (len < 2)
-	{
-		// Error
-	}
-	else if (!(ft_strncmp(input, "sa", 3)) || !(ft_strncmp(input, "sb", 3))
-			|| !(ft_strncmp(input, "ss", 3)) || !(ft_strncmp(input, "pa", 3))
-			|| !(ft_strncmp(input, "pb", 3)) || !(ft_strncmp(input, "ra", 3))
-			|| !(ft_strncmp(input, "rb", 3)) || !(ft_strncmp(input, "rr", 4)))
+	l = ft_strlen(input);
+	if ((l >= 2 || l == 0)
+		&& (!(ft_strncmp(input, "sa", l)) || !(ft_strncmp(input, "sb", l))
+		|| !(ft_strncmp(input, "ss", l)) || !(ft_strncmp(input, "pa", l))
+		|| !(ft_strncmp(input, "pb", l)) || !(ft_strncmp(input, "ra", l))
+		|| !(ft_strncmp(input, "rb", l)) || !(ft_strncmp(input, "rr", l))
+		|| !(ft_strncmp(input, "rra", l)) || !(ft_strncmp(input, "rrb", l))
+		|| !(ft_strncmp(input, "rrr", l))))
 	{
 		instruction(input, &checker->stack_a, &checker->stack_b, 0);
 		free(input);
 		input = NULL;
+	}
+	else
+	{
+		free(input);
+		free_stack(&checker->stack_a);
+		free_stack(&checker->stack_b);
+		ft_error("Invalid instruction");
+		exit(1);
 	}
 }
 
@@ -44,11 +51,7 @@ void	read_input(t_data *checker)
 	{
 		r = get_next_line(checker->fd, &inst);
 		if (inst)
-		{
-			instruction(inst, &checker->stack_a, &checker->stack_b, 0);
-			free(inst);
-			inst = NULL;
-		}
+			check_input(inst, checker);
 		if (checker->verbose)
 			print_stack_bonus(&checker->stack_a, &checker->stack_b);
 	}

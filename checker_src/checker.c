@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:16:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/05 15:23:11 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/18 17:39:00 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int	main(int argc, char **argv)
 		|| !(init_stacks(argc, argv, &checker)))
 		return (1);
 	read_input(&checker);
+	free_stack(&checker.stack_a);
+	free_stack(&checker.stack_b);
 	return (0);
 }
