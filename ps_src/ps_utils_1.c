@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:44:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/19 10:00:46 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/21 14:39:09 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_content(t_stack *stack, int pos)
 {
-	t_element *current;
+	t_element	*current;
 
 	current = stack->top;
 	while (pos)
@@ -23,6 +23,21 @@ int	get_content(t_stack *stack, int pos)
 		pos--;
 	}
 	return (current->content);
+}
+
+int	get_position(t_stack *stack, int content)
+{
+	t_element	*current;
+	int			pos;
+
+	pos = 0;
+	current = stack->top;
+	while (current->content != content)
+	{
+		current = current->next;
+		pos++;
+	}
+	return (pos);
 }
 
 t_element	*find_greatest(t_stack *stack)
@@ -41,6 +56,22 @@ t_element	*find_greatest(t_stack *stack)
 	return (greatest);
 }
 
+t_element	*find_lowest(t_stack *stack)
+{
+	t_element	*current;
+	t_element	*lowest;
+
+	current = stack->top;
+	lowest = current;
+	while (current)
+	{
+		if (lowest->content > current->content)
+			lowest = current;
+		current = current->next;
+	}
+	return (lowest);
+}
+
 void	put_top(int pos, int stack_len, t_stack *a, t_stack *b)
 {
 	int		middle;
@@ -48,7 +79,6 @@ void	put_top(int pos, int stack_len, t_stack *a, t_stack *b)
 	int		steps;
 
 	middle = stack_len / 2;
-	ft_printf("pos: %d, middle: %d, stack_len: %d\n", pos, middle, stack_len);
 	if (pos <= middle)
 	{
 		inst = "ra";

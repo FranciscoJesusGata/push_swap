@@ -6,13 +6,13 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/04/18 19:31:39 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/04/19 12:36:26 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS := -Wall -Werror -Wextra -I. -g3 -fsanitize=leak
+CFLAGS := -Wall -Werror -Wextra -I. -g3
 
 COMMON = common/stack_manager.c common/check_args.c common/instructions.c\
 		 common/utils_1.c common/utils_2.c common/check_instructions.c

@@ -6,17 +6,17 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 10:42:37 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/19 10:06:58 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/21 10:55:58 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insertion_sort(t_stack *stack_a, t_stack *stack_b)
+void	insertion_sort(t_stack *stack_a, t_stack *stack_b, t_info *info)
 {
 	int	max;
 
-	max = (find_greatest(stack_a))->content;
+	max = info->max->content;
 	while (!(check_stack_order(stack_a) && !stack_b->top))
 	{
 		if (stack_b->top && stack_b->top->content < stack_a->top->content)
