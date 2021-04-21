@@ -6,11 +6,11 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:48:42 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/21 15:51:06 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/21 17:07:43 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "common_bonus.h"
 
 void	check_rotations(char *instruction, t_stack *stack_a, t_stack *stack_b)
 {
@@ -56,4 +56,6 @@ void	instruction(char *instruction, t_stack *stack_a,
 		ft_putstr_fd(instruction, 1);
 		write(1, "\n", 1);
 	}
+	//print_stack_bonus(stack_a, stack_b);
+	//sleep(1);
 }

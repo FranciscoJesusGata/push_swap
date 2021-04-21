@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/21 16:33:11 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/21 16:57:23 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@ int	main(int argc, char **argv)
 	{
 		if (info.elements == 2)
 			instruction("sa", info.stack_a, info.stack_b, 1);
-		if (info.elements == 3)
+		else if (info.elements == 3)
 			sort_three(info.stack_a, info.stack_b, &info);
-		else if (info.elements >= 4)
+		else if (info.elements < 6)
 			sort_four_five(info.stack_a, info.stack_b, &info);
 		else
-			bubble_sort(info.stack_a, info.stack_b);
+			insertion_sort(info.stack_a, info.stack_b, &info);
 	}
 	free_stack(&push_swap.stack_a);
 	free_stack(&push_swap.stack_b);
