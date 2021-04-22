@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 10:44:54 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/08 13:14:05 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:53:28 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,35 @@ int	ft_nbrlen(long int n, int base_len)
 	int	i;
 
 	i = 0;
+	if (n < 0)
+	{
+		i = 1;
+		n *= -1;
+	}
 	if (n < base_len)
-		return (1);
+		return (i + 1);
 	while(n > 0)
 	{
 		n /= base_len;
 		i++;
 	}
 	return (i);
+}
+
+int	ft_maxlen(t_stack *stack)
+{
+	int			max;
+	int			len;
+	t_element	*current;
+
+	max = ft_nbrlen(stack->top->content, 10);
+	current = stack->top->next;
+	while (current)
+	{
+		len = ft_nbrlen(current->content, 10);
+		if (len > max)
+			max = len;
+		current = current->next;
+	}
+	return (max);
 }

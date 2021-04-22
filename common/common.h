@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:31:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/16 09:30:54 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:28:22 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ typedef struct s_stack
 typedef struct s_data
 {
 	int		verbose;
-	int		color;
 	int		fd;
-	int		last_movement;
 	t_stack	stack_a;
 	t_stack	stack_b;
+	int		max_len;
 }			t_data;
 
 /*
@@ -51,7 +50,6 @@ t_stack		*new_stack(void);
 int			fill_stack(int argc, char **argv, t_data *data);
 int			init_stacks(int argc, char **argv, t_data *data);
 void		free_stack(t_stack *stack);
-void		print_stack(t_stack *stack_a, t_stack *stack_b);
 
 /*
 ** Instructions
@@ -88,5 +86,6 @@ int			ft_isspace(char c);
 void		free_matrix(char **matrix);
 int			count_args(char *arg);
 int			ft_nbrlen(long int n, int base_len);
+int			ft_maxlen(t_stack *stack);
 
 #endif

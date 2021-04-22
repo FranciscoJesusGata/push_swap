@@ -6,24 +6,11 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:44:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/21 14:39:09 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:18:02 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	get_content(t_stack *stack, int pos)
-{
-	t_element	*current;
-
-	current = stack->top;
-	while (pos)
-	{
-		current = current->next;
-		pos--;
-	}
-	return (current->content);
-}
 
 int	get_position(t_stack *stack, int content)
 {

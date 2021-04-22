@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/18 17:27:06 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/22 12:29:38 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	read_input(t_data *checker)
 		if (inst)
 			check_input(inst, checker);
 		if (checker->verbose)
-			print_stack_bonus(&checker->stack_a, &checker->stack_b);
+			print_stack_bonus(&checker->stack_a, &checker->stack_b,
+				checker->max_len);
 	}
 	if (!(check_stack_order(&checker->stack_a)) || checker->stack_b.top)
 		write(1, "KO\n", 3);

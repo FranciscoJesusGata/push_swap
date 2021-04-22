@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/21 16:57:23 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/22 11:45:12 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,7 @@ void	get_data(t_info *info, t_data *push_swap)
 void	init_push(t_data *data)
 {
 	data->verbose = 0;
-	data->color = 0;
 	data->fd = 1;
-	data->last_movement = 0;
 }
 
 int	main(int argc, char **argv)
