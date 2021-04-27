@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/25 12:18:07 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/27 20:16:50 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	main(int argc, char **argv)
 		else if (info.elements < 11)
 			insertion_sort(info.stack_a, info.stack_b, &info);
 		else
-			quicksort(info.stack_a, info.stack_b, &info);
+			ft_chunk_algo(info.stack_a, info.stack_b, &info);
 	}
 	free_stack(&push_swap.stack_a);
 	free_stack(&push_swap.stack_b);
