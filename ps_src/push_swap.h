@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 12:50:35 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/27 20:16:14 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:31:51 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_info
 typedef struct	s_chunk
 {
 	int			start;
-	int			len;
+	int			end;
 }				t_chunk;
 
 typedef struct	s_pivot
@@ -43,8 +43,8 @@ typedef struct	s_pivot
 */
 void		bubble_sort(t_stack *stack_a, t_stack *stack_b);
 void		insertion_sort(t_stack *stack_a, t_stack *stack_b, t_info *info);
-void	quicksort(t_stack *stack_a, t_stack *stack_b, t_info *info);
-void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info);
+void		quicksort(t_stack *stack_a, t_stack *stack_b, t_info *info);
+void		ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info);
 
 /*
 **		Utils
@@ -57,5 +57,6 @@ int			get_position(t_stack *stack, int content);
 t_element	*find_lowest(t_stack *stack);
 void		update_info(t_info *info);
 t_element	*get_element(t_stack *stack, int pos);
+int			*generate_array(t_stack *stack, int elements);
 
 #endif

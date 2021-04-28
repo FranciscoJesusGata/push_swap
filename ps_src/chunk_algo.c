@@ -6,127 +6,99 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 16:59:19 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/27 21:56:08 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:59:46 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_list(int *list, int len)
+t_chunk	*generate_chunks(int elements, int *sorted_list, int count)
 {
-	int	i;
+	int		range;
+	t_chunk	*chunk_list;
+	int		i;
+	int		j;
 
+	chunk_list = (t_chunk *)malloc(sizeof(t_chunk) * count);
+	range = (elements / count);
 	i = 0;
-	while (i < len - 1)
+	j = 0;
+	while (i < count - 1)
 	{
-		ft_putnbr_fd(list[i], 1);
-		write(1, ", ",1);
+		chunk_list[i].start = sorted_list[j];
+		chunk_list[i].end = sorted_list[j + range - 1];
+		ft_printf("chunk_list[%d] -> start: %d, end %d. from %d to %d\n", 
+				i, chunk_list[i].start, chunk_list[i].end, j, j + range - 1);
 		i++;
+		j += range;
 	}
-	ft_putnbr_fd(list[i], 1);
-
-	write (1, "\n", 1);
+	chunk_list[count - 1].start = sorted_list[j];
+	chunk_list[count - 1].end = sorted_list[elements - 1];
+	ft_printf("chunk_list[%d] -> start: %d, end %d. from %d to %d\n", 
+				i, chunk_list[4].start, chunk_list[4].end, j, elements - 1);
+	return (chunk_list);
 }
 
-int	*stack_to_list(t_stack *stack_a, int elements)
+void	rise_hold(t_stack *stack_a, t_stack *stack_b, t_chunk *chunk, int len)
 {
-	int			*list;
-	t_element	*current;
 	int			i;
+	int			j;
+	int			last;
+	t_element	*current;
 
-	current = stack_a->top;
-	list = (int *)ft_calloc(elements, sizeof(int));
-	if (!list)
-		return (NULL);
 	i = 0;
-	while (current)
+	current = stack_a->top;
+	while (current
+			&& current->content < chunk->start && current->content > chunk->end)
 	{
-		list[i] = current->content;
 		i++;
 		current = current->next;
 	}
-	return (list);
-}
-
-void	choose_pivot(int *list, int **pivot, int start, int len)
-{
-	int	a;
-	int	b;
-	int	c;
-
-	a = list[start];
-	b = list[len / 2];
-	c = list[len];
-	if ((a > b && a < c) || (a < b && a > c))
-		*pivot = list + start;
-	else if ((b > a && b < c) || (b < a && b > c))
-		*pivot = list + (len / 2);
+	j = i;
+	last = j;
+	while (current)
+	{
+		if (current->content >= chunk->start && current->content <= chunk->end)
+			last = j;
+		j++;
+		current = current->next;
+	}
+	if (i < (len - last))
+		put_top(i, len, stack_a, stack_b);
 	else
-		*pivot = list + len;
-}
-
-void	swap_ints(int *a, int *b)
-{
-	int	c;
-
-	if (*a != *b)
-	{
-		c = *a;
-		*a = *b;
-		*b = c;
-	}
-}
-
-int	position_pivot(int *list, int *pivot, int start, int end)
-{
-	int	i;
-	int	j;
-
-	i = start;
-	j = end - 1;
-	ft_printf("pivot %d\n", *pivot);
-	while (j > i)
-	{
-		if (list[i] > *pivot && list[j] < *pivot)
-			swap_ints(list + i, list + j);
-		if (list[i] < *pivot && i != j)
-			i++;
-		if (list[j] > *pivot && i != j)
-			j--;
-	}
-	swap_ints(pivot, list + j);
-	return (j);
-}
-
-void	list_quicksort(int **list, int start, int end)
-{
-	int	*pivot;
-	int	pivot_pos;
-
-	pivot = NULL;
-	if (start < end)
-	{
-		choose_pivot(*list, &pivot, start, end);
-		swap_ints(pivot, *list + end);
-		pivot = *list + end;
-		pivot_pos = position_pivot(*list, pivot, start, end);
-		list_quicksort(list, start, pivot_pos - 1);
-		//list_quicksort(list, pivot_pos + 1, end);
-	}
+		put_top(j, len, stack_a, stack_b);
+	print_stack_bonus(stack_a, stack_b, 4);
 }
 
 void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 {
-	int		*sorted_list;
+	int		*sorted_array;
+	t_chunk	*chunks;
+	int		count;
+	//int		i;
 
-	sorted_list = stack_to_list(stack_a, info->elements);
-	if (!sorted_list)
+	sorted_array = generate_array(stack_a, info->elements);
+	if (!sorted_array)
 	{
 		free_stack(stack_a);
 		free_stack(stack_b);
 		exit(1);
 	}
-	print_list(sorted_list, info->elements);
-	list_quicksort(&sorted_list, 0, (info->elements - 1));
-	print_list(sorted_list, info->elements);
+		if (info->elements >= 100 && info->elements < 500)
+		count = 5;
+	else
+		count = 11;
+	ft_putnbr_fd(info->elements, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(count, 1);
+	write(1, "\n", 1);
+	chunks = generate_chunks(info->elements, sorted_array, count);
+	//i = 0;
+	/*while (i < count)
+	{
+		rise_hold(stack_a, stack_b, chunks + i, info->elements);
+		i++;
+	}*/
+	free(chunks);
+	free(sorted_array);
 }
