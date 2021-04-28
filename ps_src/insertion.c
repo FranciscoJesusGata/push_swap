@@ -6,21 +6,20 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 10:42:37 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/24 12:39:24 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:17:44 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insertion_sort(t_stack *stack_a, t_stack *stack_b, t_info *info)
+void	insertion_sort(t_stack *stack_a, t_info *info)
 {
 	while (!(check_stack_order(stack_a)) && stack_a->top->next)
 	{
-		put_top(info->min_pos, info->elements, stack_a, stack_b);
+		put_top(info->min_pos, info, 'a');
 		if (!(check_stack_order(stack_a)))
 			instruction("pb", info->stack_a, info->stack_b, 1);
 		update_info(info);
 	}
-	while (stack_b->top)
-		instruction("pa", info->stack_a, info->stack_b, 1);
+	repeat_inst("pa", info, info->elements_b);
 }

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/27 20:16:50 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:17:31 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	update_info(t_info *info)
 {
 	info->elements = ft_stack_len(info->stack_a);
+	info->elements_b = ft_stack_len(info->stack_b);
 	info->max = find_greatest(info->stack_a);
 	info->max_pos = get_position(info->stack_a, info->max->content);
 	info->min = find_lowest(info->stack_a);
@@ -33,7 +34,7 @@ void	sort_three(t_stack *stack_a, t_stack *stack_b, t_info *info)
 		if (!greatest->next || greatest->next != lowest)
 			instruction("sa", stack_a, stack_b, 1);
 		else
-			put_top(info->min_pos, info->elements, stack_a, stack_b);
+			put_top(info->min_pos, info, 'a');
 		update_info(info);
 	}
 }
@@ -57,22 +58,18 @@ int		find_spot(t_stack *stack, int content, int elements)
 
 void	sort_four_five(t_stack *stack_a, t_stack *stack_b, t_info *info)
 {
-	while (info->elements > 3)
-	{
-		instruction("pb", stack_a, stack_b, 1);
-		info->elements -= 1;
-	}
+	repeat_inst("pb", info, info->elements - 3);
 	update_info(info);
 	sort_three(stack_a, stack_b, info);
 	while (stack_b->top)
 	{
 		put_top(find_spot(stack_a, stack_b->top->content, info->elements),
-				info->elements, stack_a, stack_b);
+				info, 'a');
 		instruction("pa", stack_a, stack_b, 1);
 		update_info(info);
 	}
 	update_info(info);
-	put_top(info->min_pos, info->elements, stack_a, stack_b);
+	put_top(info->min_pos, info, 'a');
 }
 
 void	get_data(t_info *info, t_data *push_swap)
@@ -80,6 +77,7 @@ void	get_data(t_info *info, t_data *push_swap)
 	info->stack_a = &push_swap->stack_a;
 	info->stack_b = &push_swap->stack_b;
 	info->elements = ft_stack_len(info->stack_a);
+	info->elements_b = ft_stack_len(info->stack_b);
 	if (info->elements > 0)
 	{
 		info->max = find_greatest(info->stack_a);
@@ -114,7 +112,7 @@ int	main(int argc, char **argv)
 		else if (info.elements < 6)
 			sort_four_five(info.stack_a, info.stack_b, &info);
 		else if (info.elements < 11)
-			insertion_sort(info.stack_a, info.stack_b, &info);
+			insertion_sort(info.stack_a, &info);
 		else
 			ft_chunk_algo(info.stack_a, info.stack_b, &info);
 	}

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:44:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/25 12:22:21 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:18:14 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,26 +91,37 @@ t_element	*find_lowest(t_stack *stack)
 	return (lowest);
 }
 
-void	put_top(int pos, int stack_len, t_stack *a, t_stack *b)
+void	repeat_inst(char *inst, t_info *info, int steps)
 {
-	int		middle;
-	char	*inst;
-	int		steps;
-
-	middle = stack_len / 2;
-	if (pos <= middle)
-	{
-		inst = "ra";
-		steps = pos;
-	}
-	else
-	{
-		inst = "rra";
-		steps = stack_len - pos;
-	}
 	while (steps)
 	{
-		instruction(inst, a, b, 1);
+		instruction(inst, info->stack_a, info->stack_b, 1);
 		steps--;
 	}
 }
+
+void	put_top(int pos, t_info *info, int stack)
+{
+	char	inst[4];
+	int		stack_len;
+
+	if (stack == 'a')
+		stack_len = info->elements;
+	else
+		stack_len = info->elements_b;
+	inst[0] = 'r';
+	inst[2] = 0;
+	inst[3] = 0;
+	if (pos <= (stack_len / 2))
+	{
+		inst[1] = stack;
+		repeat_inst(inst, info, pos);
+	}
+	else
+	{
+		inst[1] = 'r';
+		inst[2] = stack;
+		repeat_inst(inst, info, (stack_len - pos));
+	}
+}
+

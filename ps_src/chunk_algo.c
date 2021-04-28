@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 16:59:19 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/28 16:59:46 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:19:22 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,63 @@ t_chunk	*generate_chunks(int elements, int *sorted_list, int count)
 	return (chunk_list);
 }
 
-void	rise_hold(t_stack *stack_a, t_stack *stack_b, t_chunk *chunk, int len)
+int	second_hold(t_stack *stack, int start, int end)
 {
 	int			i;
-	int			j;
 	int			last;
 	t_element	*current;
 
+	current = stack->top;
 	i = 0;
-	current = stack_a->top;
+	last = -1;
+	while (current)
+	{
+		if (current->content >= start && current->content <= end)
+			last = i;
+		i++;
+		current = current->next;
+	}
+	if (last < 0)
+		return (-1);
+	return (last);
+}
+
+int	first_hold(t_stack *stack, int start, int end)
+{
+	int			i;
+	t_element	*current;
+
+	current = stack->top;
+	i = 0;
 	while (current
-			&& current->content < chunk->start && current->content > chunk->end)
+		&& (current->content < start || current->content > end))
 	{
 		i++;
 		current = current->next;
 	}
-	j = i;
-	last = j;
-	while (current)
+	if (i == end && (current->content < start || current->content > end))
+		return (-1);
+	return (i);
+}
+
+void	push_chunk(t_info *info, t_chunk *chunk)
+{
+	int	hold_first;
+	int	hold_second;
+
+	hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
+	hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
+	while (hold_first >= 0 && hold_second >= 0)
 	{
-		if (current->content >= chunk->start && current->content <= chunk->end)
-			last = j;
-		j++;
-		current = current->next;
+		if (hold_first < (info->elements - hold_second))
+			put_top(hold_first, info, 'a');
+		else
+			put_top(hold_second, info, 'a');
+		instruction("pb", info->stack_a, info->stack_b, 1);
+		hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
+		hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
 	}
-	if (i < (len - last))
-		put_top(i, len, stack_a, stack_b);
-	else
-		put_top(j, len, stack_a, stack_b);
-	print_stack_bonus(stack_a, stack_b, 4);
+	print_stack_bonus(info->stack_a, info->stack_b, 4);
 }
 
 void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
@@ -75,7 +103,7 @@ void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 	int		*sorted_array;
 	t_chunk	*chunks;
 	int		count;
-	//int		i;
+	int		i;
 
 	sorted_array = generate_array(stack_a, info->elements);
 	if (!sorted_array)
@@ -84,21 +112,17 @@ void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 		free_stack(stack_b);
 		exit(1);
 	}
-		if (info->elements >= 100 && info->elements < 500)
+	if (info->elements >= 100 && info->elements < 500)
 		count = 5;
 	else
 		count = 11;
-	ft_putnbr_fd(info->elements, 1);
-	write(1, "\n", 1);
-	ft_putnbr_fd(count, 1);
-	write(1, "\n", 1);
 	chunks = generate_chunks(info->elements, sorted_array, count);
-	//i = 0;
-	/*while (i < count)
+	i = 0;
+	while (i < count)
 	{
-		rise_hold(stack_a, stack_b, chunks + i, info->elements);
+		push_chunk(info, chunks + i);
 		i++;
-	}*/
+	}
 	free(chunks);
 	free(sorted_array);
 }

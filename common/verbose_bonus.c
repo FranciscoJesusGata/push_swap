@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 09:24:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/22 13:40:46 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 17:04:50 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	print_stack_bonus(t_stack *stack_a, t_stack *stack_b, int width)
 	t_element	*b;
 	int			len;
 
+	len = (width + 4) * 2;
+	repeat_char('_',len);
+	write(1, "\n",1);
 	a = stack_a->top;
 	b = stack_b->top;
 	while (a || b)
@@ -53,8 +56,7 @@ void	print_stack_bonus(t_stack *stack_a, t_stack *stack_b, int width)
 		if (b)
 			b = b->next;
 	}
-	len = (width + 4) * 2;
-	repeat_char('-',len);
+	repeat_char('_',len);
 	write(1, "\n", 1);
 	width = len / 4 + 1;
 	ft_printf("%*c", width, 'a');

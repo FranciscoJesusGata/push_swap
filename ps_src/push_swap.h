@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 12:50:35 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/28 16:31:51 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:17:30 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_info
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	int			elements;
+	int			elements_b;
 	int			max_pos;
 	int			min_pos;
 }				t_info;
@@ -42,7 +43,7 @@ typedef struct	s_pivot
 **		Algoritms
 */
 void		bubble_sort(t_stack *stack_a, t_stack *stack_b);
-void		insertion_sort(t_stack *stack_a, t_stack *stack_b, t_info *info);
+void		insertion_sort(t_stack *stack_a, t_info *info);
 void		quicksort(t_stack *stack_a, t_stack *stack_b, t_info *info);
 void		ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info);
 
@@ -50,7 +51,8 @@ void		ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info);
 **		Utils
 */
 
-void		put_top(int pos, int stack_len, t_stack *a, t_stack *b);
+void		put_top(int pos, t_info *info, int stack);
+void		repeat_inst(char *inst, t_info *info, int steps);
 t_element	*find_greatest(t_stack *stack);
 int			get_content(t_stack *stack, int pos);
 int			get_position(t_stack *stack, int content);
