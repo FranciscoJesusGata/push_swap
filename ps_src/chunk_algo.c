@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 16:59:19 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/28 21:19:22 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/29 20:45:45 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,20 +82,32 @@ void	push_chunk(t_info *info, t_chunk *chunk)
 {
 	int	hold_first;
 	int	hold_second;
+	int	hold;
+	int	spot;
+
+	int	i = 0;
 
 	hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
 	hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
 	while (hold_first >= 0 && hold_second >= 0)
 	{
 		if (hold_first < (info->elements - hold_second))
-			put_top(hold_first, info, 'a');
+			hold = hold_first;
 		else
-			put_top(hold_second, info, 'a');
+			hold = hold_second;
+		put_top(hold, info, 'a');
+		spot = find_spot(info->stack_b, hold, 1);
+		ft_printf("%d\n", spot);
+		put_top(spot, info, 'b');
 		instruction("pb", info->stack_a, info->stack_b, 1);
+		update_info(info);
+		print_stack_bonus(info->stack_a, info->stack_b, 4);
 		hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
 		hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
+		i++;
+		if (i == 5)
+			break ;
 	}
-	print_stack_bonus(info->stack_a, info->stack_b, 4);
 }
 
 void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
@@ -121,6 +133,8 @@ void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 	while (i < count)
 	{
 		push_chunk(info, chunks + i);
+		if (i == 0)
+			break;
 		i++;
 	}
 	free(chunks);

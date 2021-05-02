@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:44:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/28 21:18:14 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/04/29 20:50:17 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,3 +125,27 @@ void	put_top(int pos, t_info *info, int stack)
 	}
 }
 
+int		find_spot(t_stack *stack, int content)
+{
+	t_element	*current;
+	t_element	*prev;
+	int			pos;
+
+	if (!stack->top)
+		return (0);
+	prev = stack->end;
+	current = stack->top;
+	pos = 0;
+	while (current)
+	{
+		if (prev->content < content && content < current->content)
+			return (pos);
+		pos++;
+		if (!prev->next)
+			prev = stack->top;
+		else
+			prev = prev->next;
+		current = current->next;
+	}
+	return (get_position(stack, find_lowest(stack)->content));
+}
