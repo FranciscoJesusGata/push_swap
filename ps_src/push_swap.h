@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 12:50:35 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/29 19:06:43 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/03 09:04:48 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info);
 
 void		put_top(int pos, t_info *info, int stack);
 void		repeat_inst(char *inst, t_info *info, int steps);
-int			find_spot(t_stack *stack, int content, int order);
+int			find_spot(t_stack *stack, int content);
 t_element	*find_greatest(t_stack *stack);
 int			get_content(t_stack *stack, int pos);
 int			get_position(t_stack *stack, int content);

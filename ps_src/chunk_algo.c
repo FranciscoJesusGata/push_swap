@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 16:59:19 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/29 20:45:45 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/03 09:56:16 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,40 @@ int	first_hold(t_stack *stack, int start, int end)
 	return (i);
 }
 
+int		find_spot_b(t_stack *stack, int content)
+{
+	t_element	*current;
+	t_element	*min;
+	int			pos;
+
+	if (!stack->top)
+		return (0);
+	min = find_lowest(stack);
+	if (content < min->content)
+		return (0);
+	current = min;
+	pos = get_position(stack, current->content);
+	while (current->content < content)
+	{
+		pos++;
+		current = current->next;
+		if (!current)
+		{
+			pos = 0;
+			current = stack->top;
+		}
+		if (current == min)
+			break ;
+	}
+	return (pos);
+}
+
 void	push_chunk(t_info *info, t_chunk *chunk)
 {
 	int	hold_first;
 	int	hold_second;
 	int	hold;
 	int	spot;
-
 	int	i = 0;
 
 	hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
@@ -96,17 +123,20 @@ void	push_chunk(t_info *info, t_chunk *chunk)
 		else
 			hold = hold_second;
 		put_top(hold, info, 'a');
-		spot = find_spot(info->stack_b, hold, 1);
+		spot = find_spot_b(info->stack_b, hold);
 		ft_printf("%d\n", spot);
 		put_top(spot, info, 'b');
+		print_stack_bonus(info->stack_a, info->stack_b, 4);
 		instruction("pb", info->stack_a, info->stack_b, 1);
+		update_info(info);
+		put_top(get_position(info->stack_b, find_greatest(info->stack_b)->content), info, 'b');
 		update_info(info);
 		print_stack_bonus(info->stack_a, info->stack_b, 4);
 		hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
 		hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
 		i++;
 		if (i == 5)
-			break ;
+			break;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/29 19:07:08 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/03 09:06:03 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort_four_five(t_stack *stack_a, t_stack *stack_b, t_info *info)
 	update_info(info);
 	while (stack_b->top)
 	{
-		put_top(find_spot(stack_a, stack_b->top->content, 0), info, 'a');
+		put_top(find_spot(stack_a, stack_b->top->content), info, 'a');
 		instruction("pa", stack_a, stack_b, 1);
 		update_info(info);
 	}
