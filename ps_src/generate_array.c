@@ -6,26 +6,11 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:06:40 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/28 17:00:27 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/03 18:07:57 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_list(int *list, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		ft_putnbr_fd(list[i], 1);
-		write(1, ", ",1);
-		i++;
-	}
-	ft_putnbr_fd(list[i], 1);
-	write (1, "\n", 1);
-}
 
 int	*stack_to_array(t_stack *stack_a, int elements)
 {
@@ -83,8 +68,6 @@ int	*generate_array(t_stack *stack_a, int elements)
 	array = stack_to_array(stack_a, elements);
 	if (!array)
 		return (NULL);
-	print_list(array, elements);
 	insertion_array(&array, elements);
-	print_list(array, elements);
 	return (array);
 }

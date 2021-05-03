@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/03 09:06:03 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:42:13 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ void	update_info(t_info *info)
 {
 	info->elements = ft_stack_len(info->stack_a);
 	info->elements_b = ft_stack_len(info->stack_b);
-	info->max = find_greatest(info->stack_a);
-	info->max_pos = get_position(info->stack_a, info->max->content);
-	info->min = find_lowest(info->stack_a);
-	info->min_pos = get_position(info->stack_a, info->min->content);
+	if (info->stack_a->top)
+	{
+		info->max = find_greatest(info->stack_a);
+		info->max_pos = get_position(info->stack_a, info->max->content);
+		info->min = find_lowest(info->stack_a);
+		info->min_pos = get_position(info->stack_a, info->min->content);
+	}
 }
 
 void	sort_three(t_stack *stack_a, t_stack *stack_b, t_info *info)
