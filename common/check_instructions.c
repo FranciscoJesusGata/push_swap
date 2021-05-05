@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:48:42 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/29 19:29:31 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 20:41:18 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,4 @@ void	instruction(char *instruction, t_stack *stack_a,
 		ft_putstr_fd(instruction, 1);
 		write(1, "\n", 1);
 	}
-	//print_stack_bonus(stack_a, stack_b, 5);
-	//sleep(1);
 }

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:35:33 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/16 09:27:44 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 20:40:03 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,3 @@ int	multi_args(char *arg, t_data *data)
 	free_matrix(args);
 	return (1);
 }
-

@@ -6,23 +6,11 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 16:59:19 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/03 18:56:50 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 21:30:22 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		linear_function(int elements)
-{
-	int		y;
-	int		b;
-	float	m;
-
-	m = (150 - 100) / (15 - 5);
-	b = (m * 100) + 5;
-	y = (m * elements) + b;
-	return (y);
-}
 
 t_chunk	*generate_chunks(int elements, int *sorted_list, int count)
 {
@@ -86,32 +74,6 @@ int	first_hold(t_stack *stack, int start, int end)
 	return (i);
 }
 
-int		find_spot_b(t_stack *stack, int content)
-{
-	t_element	*current;
-	t_element	*max;
-	int			pos;
-
-	if (!stack->top)
-		return (0);
-	max = find_greatest(stack);
-	current = max;
-	pos = get_position(stack, current->content);
-	while (current->content > content)
-	{
-		pos++;
-		current = current->next;
-		if (!current)
-		{
-			pos = 0;
-			current = stack->top;
-		}
-		if (current == max)
-			break ;
-	}
-	return (pos);
-}
-
 void	push_chunk(t_info *info, t_chunk *chunk)
 {
 	int	hold_first;
@@ -135,7 +97,6 @@ void	push_chunk(t_info *info, t_chunk *chunk)
 		hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
 		hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
 	}
-	
 }
 
 void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
@@ -144,7 +105,6 @@ void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 	t_chunk	*chunks;
 	int		count;
 	int		i;
-	int		max_pos;
 
 	sorted_array = generate_array(stack_a, info->elements);
 	if (!sorted_array)
@@ -153,20 +113,16 @@ void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 		free_stack(stack_b);
 		exit(1);
 	}
-	if (info->elements >= 100 && info->elements < 500)
-		count = 5;
-	else
-		count = 11;
-	chunks = generate_chunks(info->elements, sorted_array, 
-								linear_function(info->elements));
+	count = linear_function(info->elements);
+	chunks = generate_chunks(info->elements, sorted_array, count);
 	i = 0;
 	while (i < count)
 	{
 		push_chunk(info, chunks + i);
 		i++;
 	}
-	max_pos = get_position(info->stack_b, find_greatest(info->stack_b)->content);
-	put_top(max_pos, info, 'b');
+	put_top(get_position(info->stack_b, find_greatest(info->stack_b)->content),
+		info, 'b');
 	repeat_inst("pa", info, ft_stack_len(info->stack_b));
 	free(chunks);
 	free(sorted_array);

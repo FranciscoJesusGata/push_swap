@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:31:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/22 12:28:22 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 20:42:12 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int			check_stack_order(t_stack *a);
 int			check_args(char *arg, t_stack *stack, long long *num);
 int			multi_args(char *arg, t_data *data);
 int			check_flags_bonus(char **argv, int *i, t_data *data);
-
 
 /*
 ** Utils

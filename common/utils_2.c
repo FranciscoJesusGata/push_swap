@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 10:44:54 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/22 12:53:28 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 20:40:43 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_nbrlen(long int n, int base_len)
 	}
 	if (n < base_len)
 		return (i + 1);
-	while(n > 0)
+	while (n > 0)
 	{
 		n /= base_len;
 		i++;

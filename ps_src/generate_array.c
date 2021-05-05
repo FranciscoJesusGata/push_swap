@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:06:40 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/03 18:07:57 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 21:21:12 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	swap_ints(int *a, int *b)
 {
 	int	c;
 
-		c = *a;
-		*a = *b;
-		*b = c;
+	c = *a;
+	*a = *b;
+	*b = c;
 }
 
 void	insertion_array(int **array, int len)

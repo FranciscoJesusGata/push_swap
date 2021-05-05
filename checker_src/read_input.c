@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/22 12:29:38 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/05 20:42:46 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	check_input(char *input, t_data *checker)
 	l = ft_strlen(input);
 	if ((l >= 2 || l == 0)
 		&& (!(ft_strncmp(input, "sa", l)) || !(ft_strncmp(input, "sb", l))
-		|| !(ft_strncmp(input, "ss", l)) || !(ft_strncmp(input, "pa", l))
-		|| !(ft_strncmp(input, "pb", l)) || !(ft_strncmp(input, "ra", l))
-		|| !(ft_strncmp(input, "rb", l)) || !(ft_strncmp(input, "rr", l))
-		|| !(ft_strncmp(input, "rra", l)) || !(ft_strncmp(input, "rrb", l))
-		|| !(ft_strncmp(input, "rrr", l))))
+			|| !(ft_strncmp(input, "ss", l)) || !(ft_strncmp(input, "pa", l))
+			|| !(ft_strncmp(input, "pb", l)) || !(ft_strncmp(input, "ra", l))
+			|| !(ft_strncmp(input, "rb", l)) || !(ft_strncmp(input, "rr", l))
+			|| !(ft_strncmp(input, "rra", l)) || !(ft_strncmp(input, "rrb", l))
+			|| !(ft_strncmp(input, "rrr", l))))
 	{
 		instruction(input, &checker->stack_a, &checker->stack_b, 0);
 		free(input);
