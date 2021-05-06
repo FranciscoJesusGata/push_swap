@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:53:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/08 12:04:55 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:54:09 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	ft_isnumer(const char *str)
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-		{
-			ft_error("Non numeric argument");
 			return (0);
-		}
 		str++;
 	}
 	return (1);

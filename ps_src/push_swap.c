@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 11:15:27 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/05 21:06:35 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:56:59 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,34 @@ void	update_info(t_info *info)
 		info->min = find_lowest(info->stack_a);
 		info->min_pos = get_position(info->stack_a, info->min->content);
 	}
+	if (info->elements_b)
+	{
+		info->max_b = find_greatest(info->stack_b);
+		info->max_pos_b = get_position(info->stack_b, info->max_b->content);
+		info->min_b = find_lowest(info->stack_b);
+		info->min_pos_b = get_position(info->stack_b, info->min_b->content);
+	}
 }
 
-void	get_data(t_info *info, t_data *push_swap)
+void	init_info(t_info *info, t_data *push_swap)
 {
 	info->stack_a = &push_swap->stack_a;
 	info->stack_b = &push_swap->stack_b;
 	info->elements = ft_stack_len(info->stack_a);
 	info->elements_b = ft_stack_len(info->stack_b);
-	if (info->elements > 0)
+	if (info->elements)
 	{
 		info->max = find_greatest(info->stack_a);
 		info->max_pos = get_position(info->stack_a, info->max->content);
 		info->min = find_lowest(info->stack_a);
 		info->min_pos = get_position(info->stack_a, info->min->content);
+	}
+	if (info->elements_b)
+	{
+		info->max_b = find_greatest(info->stack_b);
+		info->max_pos_b = get_position(info->stack_b, info->max_b->content);
+		info->min_b = find_lowest(info->stack_b);
+		info->min_pos_b = get_position(info->stack_b, info->min_b->content);
 	}
 }
 
@@ -54,7 +68,7 @@ int	main(int argc, char **argv)
 	init_push(&push_swap);
 	if (argc == 1 || !(init_stacks(argc, argv, &push_swap)))
 		return (1);
-	get_data(&info, &push_swap);
+	init_info(&info, &push_swap);
 	if (info.elements > 0 && !(check_stack_order(&push_swap.stack_a)))
 	{
 		if (info.elements == 2)

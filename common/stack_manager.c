@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:33:49 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/04/16 09:30:51 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:55:31 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int	fill_stack(int argc, char **argv, t_data *data)
 	{
 		if (count_args(argv[i]) > 1)
 		{
-			if (!(ft_strlen(argv[i])) || !(multi_args(argv[i], data)))
+			if (!(multi_args(argv[i], data)))
 				return (0);
 		}
-		else if ((check_args(argv[i], &data->stack_a, &num)))
+		else if (check_args(argv[i], &data->stack_a, &num))
 			push_element(new_element(num), &data->stack_a);
 		else
 			return (0);

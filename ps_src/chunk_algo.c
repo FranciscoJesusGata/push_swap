@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 16:59:19 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/05 21:30:22 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:33:22 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	push_chunk(t_info *info, t_chunk *chunk)
 		else
 			hold = hold_second;
 		put_top(hold, info, 'a');
+		update_info(info);
 		spot = find_spot_b(info->stack_b, info->stack_a->top->content);
 		put_top(spot, info, 'b');
 		instruction("pb", info->stack_a, info->stack_b, 1);
-		update_info(info);
 		hold_first = first_hold(info->stack_a, chunk->start, chunk->end);
 		hold_second = second_hold(info->stack_a, chunk->start, chunk->end);
 	}
@@ -121,9 +121,9 @@ void	ft_chunk_algo(t_stack *stack_a, t_stack *stack_b, t_info *info)
 		push_chunk(info, chunks + i);
 		i++;
 	}
-	put_top(get_position(info->stack_b, find_greatest(info->stack_b)->content),
-		info, 'b');
-	repeat_inst("pa", info, ft_stack_len(info->stack_b));
+	update_info(info);
+	put_top(info->max_pos_b, info, 'b');
+	repeat_inst("pa", info, info->elements_b);
 	free(chunks);
 	free(sorted_array);
 }

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 12:50:35 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/05 21:30:40 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:01:40 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ typedef struct s_info
 {
 	t_element	*max;
 	t_element	*min;
+	t_element	*max_b;
+	t_element	*min_b;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	int			elements;
 	int			elements_b;
 	int			max_pos;
 	int			min_pos;
+	int			max_pos_b;
+	int			min_pos_b;
 }				t_info;
 
 typedef struct s_chunk
