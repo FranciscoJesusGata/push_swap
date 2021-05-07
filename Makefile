@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/05/07 09:47:05 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/05/07 10:03:21 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ $(PUSH_SWAP): $(LIBFT) $(OBJS) $(PS_OBJS) $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(PS_OBJS) $(OBJS) $(BONUS_OBJS) -o $(PUSH_SWAP) $(INCLUDE_LIBFT)
 
 $(LIBFT):
-	test ! -d ./Libft && git submodule init && git submodule update
+	-test ! -d Libft && \
+	git submodule init && git submodule update
 	$(MAKE) -C Libft
 
 clean:
@@ -57,12 +58,12 @@ clean:
 	rm -rf $(OBJS)
 	rm -rf $(PS_OBJS)
 	rm -rf $(BONUS_OBJS)
-	@$(MAKE) -C Libft clean
+	@-$(MAKE) -C Libft clean
 
 fclean: clean
 	rm -rf $(CHECKER) $(CHECKER).dSYM
 	rm -rf $(PUSH_SWAP) $(PUSH_SWAP).dSYM
-	@$(MAKE) -C Libft fclean
+	@-$(MAKE) -C Libft fclean
 
 re: fclean all
 
