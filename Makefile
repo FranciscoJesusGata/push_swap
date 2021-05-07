@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/05/07 10:08:15 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/05/07 12:35:00 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ OBJS = $(COMMON:.c=.o)
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 all: $(CHECKER) $(PUSH_SWAP)
+
+bonus: $(CHECKER) $(PUSH_SWAP)
 
 $(CHECKER): $(LIBFT) $(OBJS) $(CHECKER_OBJS) $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(CHECKER_OBJS) $(BONUS_OBJS) $(OBJS) -o $(CHECKER) $(INCLUDE_LIBFT)
