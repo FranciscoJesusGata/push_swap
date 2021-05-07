@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:02:50 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/05 20:42:46 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/07 10:59:10 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	check_input(char *input, t_data *checker)
 		free(input);
 		free_stack(&checker->stack_a);
 		free_stack(&checker->stack_b);
+		if (checker->fd)
+			close(checker->fd);
 		ft_error("Invalid instruction");
 		exit(1);
 	}
