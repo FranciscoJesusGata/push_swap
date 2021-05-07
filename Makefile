@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:38:46 by fgata-va          #+#    #+#              #
-#    Updated: 2021/05/06 15:27:29 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/05/07 09:47:05 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ $(PUSH_SWAP): $(LIBFT) $(OBJS) $(PS_OBJS) $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(PS_OBJS) $(OBJS) $(BONUS_OBJS) -o $(PUSH_SWAP) $(INCLUDE_LIBFT)
 
 $(LIBFT):
+	test ! -d ./Libft && git submodule init && git submodule update
 	$(MAKE) -C Libft
 
 clean:
