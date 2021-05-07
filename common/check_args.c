@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:35:33 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/05/06 13:54:04 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/05/07 10:14:40 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	check_args(char *arg, t_stack *stack, long long *num)
 	*num = ft_atol(arg);
 	if (*num > 2147483647 || *num < -2147483648)
 	{
-		ft_error("Too big argument");
+		if (*num > 2147483647)
+			ft_error("Too big argument");
+		else
+			ft_error("Too small argument");
 		return (0);
 	}
 	if ((ft_duplicated(stack, (int)*num)))
