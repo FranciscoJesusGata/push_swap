@@ -104,6 +104,6 @@ int	linear_function(int elements)
 	float	m;
 
 	m = (15 - 5) / (500 - 100);
-	y = 0.025 * (elements - 100) + 5;
+	y = m * (elements - 100) + 5;
 	return (y);
 }
